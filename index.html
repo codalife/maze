@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Maze</title>
+	<script src="maze.js"></script>
+	<link rel="stylesheet" href="styles.css"></link>
+</head>
+<body>
+	<div id='maze'></div>
+</body>
+	<script>
+		const t = new Maze(10, 10);
+
+		for (let i=0; i<10; i++) {
+			for (let j=0; j<10; j++) {
+				const square = document.createElement('div')
+				square.style.left = i * 40 + 'px';
+				square.style.top = j * 40 + 'px';
+				square.classList.add("sq");
+				if (!t.graph[i + ',' + j].children.hasOwnProperty((i + 1) + ',' + j)) {
+					square.style.borderRight = "thick solid #0000FF";
+				}
+				if (!t.graph[i + ',' + j].children.hasOwnProperty(i + ',' + (j + 1))) {
+					square.style.borderBottom = "thick solid #0000FF";
+				}
+				document.getElementById('maze').appendChild(square)
+			}
+		}
+	</script>
+</html>

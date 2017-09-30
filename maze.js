@@ -47,7 +47,8 @@ class Maze {
                 && next.y >= 0 && next.y < this.height
                 && !this.graph.hasOwnProperty(next.x + ',' + next.y) ) {
 
-				let nextTree = new Tree(next.x, next.y)
+				let nextTree = new Tree(next.x, next.y);
+				nextTree.children[tree.x + ',' + tree.y] = tree;
 				tree.children[next.x + ',' + next.y] = nextTree;
 
 				this.createMaze(nextTree);
@@ -55,3 +56,7 @@ class Maze {
 		}
 	}
 }
+
+// const t = new Maze(4, 4);
+// console.log(Object.keys(t.graph).length)
+// Object.keys(t.graph).forEach(n => console.log(t.graph[n]))
